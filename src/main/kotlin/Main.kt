@@ -6,7 +6,9 @@ import org.reflections.util.ConfigurationBuilder
 import org.reflections.util.FilterBuilder
 import kotlin.reflect.full.createInstance
 
-val dayArguments = mapOf<Int, Pair<List<String>?, List<String>?>>()
+val dayArguments = mapOf<Int, Pair<List<String>?, List<String>?>>(
+    2 to Pair(null, listOf("19690720"))
+)
 
 fun main() {
     val packagePath = "edu.mou.adventofcode"
