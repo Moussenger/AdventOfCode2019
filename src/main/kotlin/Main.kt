@@ -28,22 +28,34 @@ fun main() {
         .sortedBy { it.simpleName }
         .map { it.createInstance() }
 
-    val initialTime = System.currentTimeMillis()
+    var totalTime = 0L
 
     solvers.forEachIndexed { index, instance ->
         val args = dayArguments[index + 1]
 
+        val localTimeP1 = System.currentTimeMillis()
+        val part1 = instance.solvePart1(*args?.first?.toTypedArray() ?: arrayOf())
+        val endLocalTimeP1 = System.currentTimeMillis() - localTimeP1
+
+        val localTimeP2 = System.currentTimeMillis()
+        val part2 = instance.solvePart2(*args?.second?.toTypedArray() ?: arrayOf())
+        val endLocalTimeP2 = System.currentTimeMillis() - localTimeP2
+
         println("#${instance.day} - ${instance.name}:")
-        println("\t· Part 1: ${instance.solvePart1(*args?.first?.toTypedArray() ?: arrayOf())}")
-        println("\t· Part 2: ${instance.solvePart2(*args?.second?.toTypedArray() ?: arrayOf())}")
+        println("\t· Part 1: $part1(${timeToString(endLocalTimeP1)})")
+        println("\t· Part 2: $part2(${timeToString(endLocalTimeP2)})")
         println("-".repeat(30))
+
+        totalTime += endLocalTimeP1 + endLocalTimeP2
     }
 
-    val endTime = System.currentTimeMillis() - initialTime
+    println("Total time: ${timeToString(totalTime)}")
+}
 
-    val milliseconds = (endTime % 1000).toString().padStart(3, '0')
-    val seconds = (endTime / 1000).toString().padStart(2, '0')
-    val minutes = (endTime / 1000 / 60).toString().padStart(2, '0')
+fun timeToString(time: Long): String {
+    val milliseconds = (time % 1000).toString().padStart(3, '0')
+    val seconds = (time / 1000).toString().padStart(2, '0')
+    val minutes = (time / 1000 / 60).toString().padStart(2, '0')
 
-    println("Total time: ${minutes}m ${seconds}s ${milliseconds}ms")
+    return "${minutes}m ${seconds}s ${milliseconds}ms"
 }
