@@ -1,4 +1,4 @@
-package edu.mou.adventofcode.day02The1202ProgramAlarm
+package edu.mou.adventofcode.tools
 
 class IntCodeInterpreter(val code: MutableList<Int>) {
     companion object {

@@ -1,6 +1,7 @@
 package edu.mou.adventofcode.day02The1202ProgramAlarm
 
 import edu.mou.adventofcode.tools.DayProblem
+import edu.mou.adventofcode.tools.IntCodeInterpreter
 
 class Day02The1202ProgramAlarm : DayProblem<Int, Int>(day = "02", name = "1202 Program Alarm") {
     override fun solvePart1(vararg args: String): Int {
