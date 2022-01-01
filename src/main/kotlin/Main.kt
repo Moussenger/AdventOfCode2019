@@ -7,7 +7,8 @@ import org.reflections.util.FilterBuilder
 import kotlin.reflect.full.createInstance
 
 val dayArguments = mapOf<Int, Pair<List<String>?, List<String>?>>(
-    2 to Pair(null, listOf("19690720"))
+    2 to Pair(null, listOf("19690720")),
+    5 to Pair(listOf("1"), listOf("5")),
 )
 
 fun main() {
