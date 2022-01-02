@@ -23,6 +23,10 @@ sealed class IntCodeOperator(val opSize: Int, val isHalt: Boolean = false) {
         }
     }
 
+    fun isInput(): Boolean {
+        return this is Input
+    }
+
     abstract fun exec(intCode: IntCode, vararg modes: Int)
 }
 

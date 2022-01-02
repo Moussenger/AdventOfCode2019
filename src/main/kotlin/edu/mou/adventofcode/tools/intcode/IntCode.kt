@@ -21,6 +21,10 @@ class IntCode(private val code: MutableList<Int>, private val input: MutableList
         return input.removeFirst()
     }
 
+    fun input(values: List<Int>) {
+        input.addAll(values)
+    }
+
     fun output(): List<Int> {
         return output.toList()
     }
