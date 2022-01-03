@@ -10,6 +10,7 @@ val dayArguments = mapOf<Int, Pair<List<String>?, List<String>?>>(
     2 to Pair(null, listOf("19690720")),
     5 to Pair(listOf("1"), listOf("5")),
     7 to Pair(listOf("0", "4"), listOf("5", "9")),
+    8 to Pair(listOf("25", "6"), listOf("25", "6")),
 )
 
 fun main() {
@@ -44,8 +45,8 @@ fun main() {
         val endLocalTimeP2 = System.currentTimeMillis() - localTimeP2
 
         println("#${instance.day} - ${instance.name}:")
-        println("\t· Part 1: $part1(${timeToString(endLocalTimeP1)})")
-        println("\t· Part 2: $part2(${timeToString(endLocalTimeP2)})")
+        println("\t· Part 1 (${timeToString(endLocalTimeP1)}): $part1")
+        println("\t· Part 2 (${timeToString(endLocalTimeP2)}): $part2")
         println("-".repeat(30))
 
         totalTime += endLocalTimeP1 + endLocalTimeP2
