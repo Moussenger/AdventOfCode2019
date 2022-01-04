@@ -1,21 +1,21 @@
 package edu.mou.adventofcode.tools.intcode
 
 class IntCodePointer {
-    private var pointer: Int = 0
+    private var pointer: Long = 0
 
-    fun move(delta: Int) {
+    fun move(delta: Long) {
         pointer += delta
     }
 
-    fun moveTo(position: Int) {
+    fun moveTo(position: Long) {
         pointer = position
     }
 
-    fun look(): Int {
+    fun look(): Long {
         return pointer
     }
 
-    fun lookAfter(delta: Int): Int {
+    fun lookAfter(delta: Long): Long {
         return pointer + delta
     }
 }

@@ -4,7 +4,7 @@ import edu.mou.adventofcode.day05SunnyChanceAsteroids.Day05SunnyChanceAsteroids
 import edu.mou.adventofcode.tools.DayProblemTest
 
 class Day05SunnyChanceAsteroidsTest :
-    DayProblemTest<Day05SunnyChanceAsteroids, Int, Int>(
+    DayProblemTest<Day05SunnyChanceAsteroids, Long, Long>(
         dayProblem = Day05SunnyChanceAsteroids::class,
         argsPart1 = listOf("33"),
         expectedPart1 = 33,

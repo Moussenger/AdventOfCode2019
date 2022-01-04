@@ -11,10 +11,11 @@ sealed class IntCodeOperator(val opSize: Int, val isHalt: Boolean = false) {
             6 to JumpIfFalse,
             7 to LessThan,
             8 to Equals,
+            9 to UpdateRelativeBase,
             99 to Halt
         )
 
-        fun parse(operator: Int): Pair<IntCodeOperator, List<Int>> {
+        fun parse(operator: Long): Pair<IntCodeOperator, List<Int>> {
             val operatorParts = operator.toString().padStart(5, '0').toList()
             val opCode = operatorParts.takeLast(2).joinToString("").toInt()
             val modes = operatorParts.take(3).reversed().map { it.toString().toInt() }
@@ -38,6 +39,7 @@ private object Add : IntCodeOperator(3) {
         intCode.setMode(modes[1])
         val second = intCode.value(2)
 
+        intCode.setMode(modes[2])
         intCode.put(3, first + second)
     }
 }
@@ -50,6 +52,7 @@ private object Product : IntCodeOperator(3) {
         intCode.setMode(modes[1])
         val second = intCode.value(2)
 
+        intCode.setMode(modes[2])
         intCode.put(3, first * second)
     }
 }
@@ -71,7 +74,7 @@ private object Output : IntCodeOperator(1) {
 private object JumpIfTrue : IntCodeOperator(2) {
     override fun exec(intCode: IntCode, vararg modes: Int) {
         intCode.setMode(modes[0])
-        val jump = intCode.value(1) != 0
+        val jump = intCode.value(1) != 0L
 
         intCode.setMode(modes[1])
         if (jump) intCode.moveTo(intCode.value(2))
@@ -81,7 +84,7 @@ private object JumpIfTrue : IntCodeOperator(2) {
 private object JumpIfFalse : IntCodeOperator(2) {
     override fun exec(intCode: IntCode, vararg modes: Int) {
         intCode.setMode(modes[0])
-        val jump = intCode.value(1) == 0
+        val jump = intCode.value(1) == 0L
 
         intCode.setMode(modes[1])
         if (jump) intCode.moveTo(intCode.value(2))
@@ -96,6 +99,7 @@ private object LessThan : IntCodeOperator(3) {
         intCode.setMode(modes[1])
         val second = intCode.value(2)
 
+        intCode.setMode(modes[2])
         if (first < second) intCode.put(3, 1) else intCode.put(3, 0)
     }
 }
@@ -108,7 +112,17 @@ private object Equals : IntCodeOperator(3) {
         intCode.setMode(modes[1])
         val second = intCode.value(2)
 
+        intCode.setMode(modes[2])
         if (first == second) intCode.put(3, 1) else intCode.put(3, 0)
+    }
+}
+
+private object UpdateRelativeBase : IntCodeOperator(1) {
+    override fun exec(intCode: IntCode, vararg modes: Int) {
+        intCode.setMode(modes[0])
+        val relativeBase = intCode.value(1)
+
+        intCode.setRelativeBase(relativeBase)
     }
 }
 
