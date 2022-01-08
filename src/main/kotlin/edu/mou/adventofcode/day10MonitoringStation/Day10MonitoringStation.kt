@@ -1,6 +1,8 @@
 package edu.mou.adventofcode.day10MonitoringStation
 
 import edu.mou.adventofcode.tools.DayProblem
+import edu.mou.adventofcode.tools.models.Point
+import edu.mou.adventofcode.tools.models.toPoints
 import edu.mou.adventofcode.tools.zip
 
 class Day10MonitoringStation :
