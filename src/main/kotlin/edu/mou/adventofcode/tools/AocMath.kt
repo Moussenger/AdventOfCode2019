@@ -17,4 +17,25 @@ object AocMath {
 
         return permutes
     }
+
+    fun <T> combinations(elements: List<T>, size: Int, current: List<T> = listOf()): List<List<T>> {
+        if (current.size == size) return listOf(current)
+
+        val combs = mutableListOf<List<T>>()
+
+        for (element in elements) {
+            val nextElements = elements.toMutableList().takeLastWhile { it != element }
+            combs += combinations(nextElements, size, current + listOf(element))
+        }
+
+        return combs
+    }
+
+    fun gcd(x: Long, y: Long): Long {
+        return if (y == 0L) x else gcd(y, x % y)
+    }
+
+    fun lcm(vararg numbers: Long): Long {
+        return numbers.reduce { x, y -> x * (y / gcd(x, y)) }
+    }
 }

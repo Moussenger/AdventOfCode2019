@@ -12,6 +12,7 @@ val dayArguments = mapOf<Int, Pair<List<String>?, List<String>?>>(
     7 to Pair(listOf("0", "4"), listOf("5", "9")),
     8 to Pair(listOf("25", "6"), listOf("25", "6")),
     9 to Pair(listOf("1"), listOf("2")),
+    12 to Pair(listOf("1000"), null),
 )
 
 fun main() {

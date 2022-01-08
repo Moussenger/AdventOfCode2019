@@ -16,3 +16,11 @@ inline fun <T, V> List<List<T>>.zip(transform: (List<T>) -> V): List<V> {
 
     return list
 }
+
+fun <T> List<T>.permutations(): List<List<T>> {
+    return AocMath.permutations(this)
+}
+
+fun <T> List<T>.combinations(size: Int): List<List<T>> {
+    return AocMath.combinations(this, size)
+}
